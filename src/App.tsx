@@ -1913,9 +1913,11 @@ function BeforeAfterSlider({ before, after }: { before: string, after: string })
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden rounded-2xl cursor-ew-resize select-none shadow-2xl"
+      className="relative w-full h-full overflow-hidden rounded-2xl cursor-ew-resize select-none shadow-2xl touch-none"
       onMouseMove={handleMove}
       onTouchMove={handleMove}
+      onMouseDown={handleMove}
+      onTouchStart={handleMove}
     >
       {/* Before Image */}
       <img src={before} className="absolute inset-0 w-full h-full object-cover grayscale brightness-50" alt="Before" />
