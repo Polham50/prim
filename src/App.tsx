@@ -189,7 +189,10 @@ function LandingPage({ setView, onOpenQuote }: { setView: (view: string) => void
             </div>
           </div>
           
-          <button className="bg-[#4D8BF8] hover:bg-[#0A62D0] text-white px-8 py-3.5 rounded font-bold text-sm transition-colors shadow-md active:scale-95">
+          <button 
+            onClick={() => setView("services")}
+            className="bg-[#4D8BF8] hover:bg-[#0A62D0] text-white px-8 py-3.5 rounded font-bold text-sm transition-colors shadow-md active:scale-95"
+          >
             DISCOVER MORE
           </button>
         </motion.div>
@@ -1053,7 +1056,7 @@ function ServicesPage() {
                       {currentSolution.description}
                     </p>
                     
-                    <div className="grid grid-cols-2 gap-6 mt-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-auto">
                       {currentSolution.features.map((feat, i) => (
                         <div key={i} className="flex items-center gap-3">
                           <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center">
@@ -2182,7 +2185,7 @@ function CaseStudiesPage() {
               transition={{ duration: 0.8, delay: i * 0.1 }}
               className={`flex flex-col lg:flex-row gap-16 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
             >
-              <div className="lg:w-1/2 relative group h-[400px]">
+              <div className="lg:w-1/2 relative group h-[300px] md:h-[400px]">
                 <div className="absolute -inset-4 bg-[#0A62D0]/5 rounded-3xl -z-10 group-hover:bg-[#0A62D0]/10 transition-colors"></div>
                 <BeforeAfterSlider before={study.beforeImage} after={study.afterImage} />
                 <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden md:block z-30">
@@ -2347,8 +2350,54 @@ export default function App() {
           </button>
 
           <button onClick={() => setIsQuoteModalOpen(true)} className={`hidden md:block px-6 py-2.5 rounded text-xs font-bold transition-colors shadow-sm ${isHeroView ? "bg-white text-[#0A62D0] hover:bg-white/90" : "bg-[#4D8BF8] hover:bg-[#0A62D0] text-white"}`}>GET A QUOTE</button>
+          
+          {/* Mobile Menu Toggle */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`md:hidden flex items-center justify-center p-2 rounded-lg transition-colors ${isHeroView ? "text-white hover:bg-white/10" : "text-slate-800 hover:bg-slate-100"}`}
+          >
+            <span className="material-symbols-outlined text-2xl">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[60] bg-white flex flex-col p-8 pt-24"
+          >
+            <ul className="flex flex-col gap-6 text-2xl font-black text-slate-900 tracking-tight">
+              {["landing", "about", "products", "services", "projects", "calculator", "contact"].map((v) => (
+                <li 
+                  key={v}
+                  onClick={() => { setView(v); setIsMobileMenuOpen(false); }}
+                  className="hover:text-[#0A62D0] transition-colors cursor-pointer capitalize"
+                >
+                  {v === "landing" ? "Home" : v}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-auto space-y-4">
+              <button 
+                onClick={() => { setIsQuoteModalOpen(true); setIsMobileMenuOpen(false); }}
+                className="w-full bg-[#0A62D0] text-white py-4 rounded-xl font-black tracking-widest text-sm"
+              >
+                GET A QUOTE
+              </button>
+              <div className="flex justify-center gap-6 pt-6">
+                <span className="material-symbols-outlined text-slate-400">public</span>
+                <span className="material-symbols-outlined text-slate-400">shield</span>
+                <span className="material-symbols-outlined text-slate-400">bolt</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {view === "landing" ? (
         <LandingPage setView={setView} onOpenQuote={() => setIsQuoteModalOpen(true)} />
       ) : view === "products" ? (
