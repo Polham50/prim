@@ -1884,7 +1884,7 @@ const caseStudies = [
       { label: "Payback", value: "3.2 Years" }
     ],
     beforeImage: "/images/hero_monitoring.png",
-    afterImage: "/images/hero_solar.png"
+    afterImage: "/images/project_techhub.png"
   },
   {
     id: 2,
@@ -1899,7 +1899,7 @@ const caseStudies = [
       { label: "Uptime", value: "99.99% Guaranteed" }
     ],
     beforeImage: "/images/hero_security.png",
-    afterImage: "/images/hero_monitoring.png"
+    afterImage: "/images/project_secure.png"
   },
   {
     id: 3,
@@ -1914,7 +1914,7 @@ const caseStudies = [
       { label: "Annual Saving", value: "₦45,000,000" }
     ],
     beforeImage: "/images/hero_solar.png",
-    afterImage: "/images/hero_storage.png"
+    afterImage: "/images/project_ecofactory.png"
   },
   {
     id: 4,
@@ -1944,7 +1944,7 @@ const caseStudies = [
       { label: "ROI", value: "1.8 Years" }
     ],
     beforeImage: "/images/hero_monitoring.png",
-    afterImage: "/images/hero_solar.png"
+    afterImage: "/images/project_agri.png"
   },
   {
     id: 6,
