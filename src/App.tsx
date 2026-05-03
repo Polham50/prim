@@ -7,8 +7,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "motion/react";
 import { products, type Product } from "./products";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Float, PerspectiveCamera, Environment, Stars, Sky, ContactShadows } from "@react-three/drei";
+
 
 
 
@@ -98,39 +97,7 @@ function LandingPage({ setView, onOpenQuote }: { setView: (view: string) => void
         </div>
       </div>
 
-      {/* 3D Visualizer Section */}
-      <section className="py-24 max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        <div className="lg:col-span-5">
-          <span className="text-xs font-black text-[#0A62D0] uppercase tracking-widest mb-3 block">Innovation Hub</span>
-          <h2 className="text-4xl font-bold text-slate-900 mb-6 leading-tight">Visualize your<br/>smart infrastructure</h2>
-          <p className="text-slate-500 text-sm leading-relaxed mb-8">
-            Experience our precision engineering in a fully interactive 3D environment. Toggle between day and night to see how our integrated systems protect and power your property around the clock.
-          </p>
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0A62D0] flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-sm">wb_sunny</span>
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Day: High-Yield Generation</h4>
-                <p className="text-[10px] text-slate-500">Maximum PV efficiency and battery charging.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-sm">nightlight</span>
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Night: Autonomous Security</h4>
-                <p className="text-[10px] text-slate-500">AI-driven threat detection and seamless power switching.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="lg:col-span-7">
-          <VirtualHouse />
-        </div>
-      </section>
+
 
 
       {/* Trusted Partners Marquee */}
@@ -2201,148 +2168,7 @@ function CaseStudiesPage() {
   );
 }
 
-function House({ isNight }: { isNight: boolean }) {
 
-  return (
-    <group>
-      {/* Base */}
-      <mesh position={[0, 1.25, 0]}>
-        <boxGeometry args={[4, 2.5, 4]} />
-        <meshStandardMaterial color={isNight ? "#1e293b" : "#f8fafc"} />
-      </mesh>
-      
-      {/* Roof */}
-      <mesh position={[0, 3.25, 0]} rotation={[0, Math.PI / 4, 0]}>
-        <coneGeometry args={[3.5, 2, 4]} />
-        <meshStandardMaterial color={isNight ? "#0f172a" : "#475569"} />
-      </mesh>
-
-      {/* Solar Panels */}
-      <group position={[0, 3.5, 0.8]} rotation={[-Math.PI / 4, 0, 0]}>
-        <mesh position={[-0.8, 0, 0]}>
-          <boxGeometry args={[1.2, 0.05, 1.8]} />
-          <meshStandardMaterial color="#1e3a8a" metalness={0.8} roughness={0.2} />
-        </mesh>
-        <mesh position={[0.8, 0, 0]}>
-          <boxGeometry args={[1.2, 0.05, 1.8]} />
-          <meshStandardMaterial color="#1e3a8a" metalness={0.8} roughness={0.2} />
-        </mesh>
-      </group>
-
-      {/* CCTV Cameras */}
-      <group position={[1.9, 2.2, 1.9]} rotation={[0, Math.PI / 4, 0]}>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.1, 0.1, 0.4]} />
-          <meshStandardMaterial color="#334155" />
-        </mesh>
-        {isNight && (
-           <pointLight color="#ff0000" intensity={0.5} position={[0, 0, 0.3]} />
-        )}
-      </group>
-
-      {/* Windows with Glow at Night */}
-      <mesh position={[1, 1.5, 2.01]}>
-        <planeGeometry args={[0.8, 0.8]} />
-        <meshStandardMaterial 
-          color={isNight ? "#fde047" : "#bae6fd"} 
-          emissive={isNight ? "#fde047" : "#000000"} 
-          emissiveIntensity={isNight ? 2 : 0} 
-        />
-      </mesh>
-      <mesh position={[-1, 1.5, 2.01]}>
-        <planeGeometry args={[0.8, 0.8]} />
-        <meshStandardMaterial 
-          color={isNight ? "#fde047" : "#bae6fd"} 
-          emissive={isNight ? "#fde047" : "#000000"} 
-          emissiveIntensity={isNight ? 2 : 0} 
-        />
-      </mesh>
-
-      {/* Ground */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
-        <planeGeometry args={[20, 20]} />
-        <meshStandardMaterial color={isNight ? "#020617" : "#f1f5f9"} />
-      </mesh>
-    </group>
-  );
-}
-
-function VirtualHouse() {
-  const [isNight, setIsNight] = useState(false);
-
-  return (
-    <div className="w-full h-[500px] relative bg-slate-100 dark:bg-slate-900 rounded-3xl overflow-hidden shadow-inner group border border-slate-200/50">
-      <div className="absolute top-6 left-6 z-10">
-        <h3 className="text-sm font-black text-slate-800 dark:text-white uppercase tracking-widest mb-1">Infrastructure Preview</h3>
-        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Interactive 3D Simulation</p>
-      </div>
-
-      <div className="absolute top-6 right-6 z-10 flex flex-col gap-2">
-        <button 
-          onClick={() => setIsNight(!isNight)}
-          className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${
-            isNight ? 'bg-yellow-400 text-slate-900 shadow-lg shadow-yellow-400/20' : 'bg-slate-800 text-white shadow-lg shadow-slate-900/20'
-          }`}
-        >
-          <span className="material-symbols-outlined text-xs">{isNight ? 'light_mode' : 'dark_mode'}</span>
-          {isNight ? 'Switch to Day' : 'Switch to Night'}
-        </button>
-      </div>
-
-      <Canvas shadows>
-        <PerspectiveCamera makeDefault position={[8, 6, 8]} fov={40} />
-        <OrbitControls enableZoom={false} minPolarAngle={Math.PI / 6} maxPolarAngle={Math.PI / 2.2} />
-        
-        <ambientLight intensity={isNight ? 0.05 : 0.6} />
-        <directionalLight 
-          position={[10, 10, 5]} 
-          intensity={isNight ? 0.01 : 1.2} 
-          castShadow 
-          shadow-mapSize={[1024, 1024]}
-        />
-        
-        {isNight ? (
-          <>
-            <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-            <pointLight position={[-4, 4, 4]} intensity={0.5} color="#4D8BF8" />
-            <spotLight 
-              position={[2, 4, 3]} 
-              angle={0.3} 
-              penumbra={1} 
-              intensity={2} 
-              color="#ffffff" 
-              castShadow 
-            />
-          </>
-        ) : (
-          <Sky sunPosition={[100, 10, 100]} />
-        )}
-
-        <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-          <House isNight={isNight} />
-        </Float>
-        
-        <ContactShadows resolution={1024} scale={15} blur={2} opacity={0.25} far={10} color={isNight ? "#000" : "#334155"} />
-        <Environment preset={isNight ? "night" : "city"} />
-      </Canvas>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-6">
-        <div className="flex items-center gap-2 opacity-50 group-hover:opacity-100 transition-opacity">
-          <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Solar Arrays</span>
-        </div>
-        <div className="flex items-center gap-2 opacity-50 group-hover:opacity-100 transition-opacity">
-          <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Smart CCTV</span>
-        </div>
-        <div className="flex items-center gap-2 opacity-50 group-hover:opacity-100 transition-opacity">
-          <div className="w-2 h-2 rounded-full bg-amber-500"></div>
-          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Energy Storage</span>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function App() {
 
