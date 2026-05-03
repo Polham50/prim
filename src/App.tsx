@@ -1913,7 +1913,7 @@ function BeforeAfterSlider({ before, after }: { before: string, after: string })
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden rounded-2xl cursor-ew-resize select-none shadow-2xl touch-none"
+      className="relative w-full h-full min-h-[250px] overflow-hidden rounded-2xl cursor-ew-resize select-none shadow-2xl touch-none"
       onMouseMove={handleMove}
       onTouchMove={handleMove}
       onMouseDown={handleMove}
@@ -2196,7 +2196,7 @@ function CaseStudiesPage() {
               transition={{ duration: 0.8, delay: i * 0.1 }}
               className={`flex flex-col lg:flex-row gap-16 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
             >
-              <div className="lg:w-1/2 relative group h-[300px] md:h-[400px]">
+              <div className="w-full lg:w-1/2 relative group h-[300px] md:h-[400px]">
                 <div className="absolute -inset-4 bg-[#0A62D0]/5 rounded-3xl -z-10 group-hover:bg-[#0A62D0]/10 transition-colors"></div>
                 <BeforeAfterSlider before={study.beforeImage} after={study.afterImage} />
                 <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden md:block z-30">
