@@ -871,8 +871,63 @@ function ContactPage() {
     </main>
   );
 }
+const solutions = [
+  {
+    id: "solutions",
+    label: "Solutions",
+    title: "Turnkey Solutions",
+    subtitle: "Complete Infrastructure Architecture",
+    description: "Our Solutions division provides absolute end-to-end engineering. From multi-site industrial surveys to municipal energy planning, we architect high-performance ecosystems that bridge the gap between complex hardware and seamless everyday reliability.",
+    features: ["Custom System Schematics", "Full Project Management", "Certified Commissioning", "Lifecycle Analysis"],
+    icon: "account_tree",
+    image: "/images/hero_monitoring.png"
+  },
+  {
+    id: "solar",
+    label: "Solar Arrays",
+    title: "Solar Arrays",
+    subtitle: "High-Yield Photovoltaic Systems",
+    description: "We deploy industrial-grade solar arrays utilizing high-efficiency N-Type TOPCon technology. Designed for maximum irradiance capture even in high-heat environments, our arrays are engineered to reduce utility overhead by up to 95% for enterprise facilities.",
+    features: ["TOPCon Cell Technology", "Bifacial Gain Optimization", "Smart Inverter Integration", "Real-time Yield Tracking"],
+    icon: "solar_power",
+    image: "/images/hero_solar.png"
+  },
+  {
+    id: "security",
+    label: "Security Tech",
+    title: "Security Tech",
+    subtitle: "Autonomous Surveillance Networks",
+    description: "Security is no longer just a camera—it's a neural network. Our Security Tech deployments feature AI-driven edge computing for autonomous threat detection, thermal perimeter monitoring, and high-encryption decentralized storage.",
+    features: ["AI Threat Recognition", "Thermal Perimeter Mesh", "Zero-Latency Remote View", "End-to-End Encryption"],
+    icon: "security",
+    image: "/images/hero_security.png"
+  },
+  {
+    id: "storage",
+    label: "Grid Storage",
+    title: "Grid Storage",
+    subtitle: "Mission-Critical Energy Reserves",
+    description: "Our Grid Storage solutions feature industrial LiFePO4 stacks with advanced BMS (Battery Management Systems). We enable peak-shaving, load-balancing, and sub-10ms switching to ensure zero-downtime for mission-critical medical or data infrastructure.",
+    features: ["Load Balancing AI", "Sub-10ms Auto-Switch", "Modular Scaling Stacks", "Active BMS Balancing"],
+    icon: "battery_charging_full",
+    image: "/images/hero_storage.png"
+  },
+  {
+    id: "consulting",
+    label: "Consulting",
+    title: "Technical Consulting",
+    subtitle: "Expert Advisory & ROI Modeling",
+    description: "Knowledge is the first step to resilience. Our senior engineers provide comprehensive energy audits, ROI financial modeling, and regulatory compliance advisory to ensure your infrastructure investment is optimized for the next 25 years.",
+    features: ["Energy Audit Reports", "Financial ROI Projection", "Compliance Certification", "System Modernization Roadmaps"],
+    icon: "engineering",
+    image: "/images/hero_monitoring.png"
+  }
+];
 
 function ServicesPage() {
+  const [activeTab, setActiveTab] = useState(solutions[0].id);
+  const currentSolution = solutions.find(s => s.id === activeTab) || solutions[0];
+
   return (
     <main className="tech-grid-pattern">
       {/* Cinematic Services Hero */}
@@ -948,89 +1003,95 @@ function ServicesPage() {
         </div>
       </section>
 
-      {/* Main Services Bento Grid */}
-      <section className="py-16 bg-surface-container-low" id="services">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="mb-10">
-            <h2 className="text-xl md:text-2xl font-bold text-on-surface">Comprehensive Service Ecosystem</h2>
-            <p className="text-xs md:text-sm text-on-surface-variant max-w-xl mt-2">Integrated solutions combining renewable power with state-of-the-art security.</p>
+      {/* Interactive Solutions Showcase */}
+      <section className="py-24 bg-slate-50" id="services">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-black text-[#0A62D0] uppercase tracking-[0.3em] mb-4">Core Competencies</h2>
+            <p className="text-3xl font-black text-slate-900 tracking-tight">Our Integrated Solutions</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-            {/* Solar Installation Card */}
-            <div className="md:col-span-8 group relative overflow-hidden bg-white border border-slate-200 rounded-lg transition-all hover:shadow-md">
-              <div className="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
-              <div className="flex flex-col md:flex-row h-full">
-                <div className="p-6 flex-1">
-                  <span className="material-symbols-outlined text-secondary-container text-2xl mb-2">solar_power</span>
-                  <h3 className="text-lg font-bold mb-2">Solar Power Installation</h3>
-                  <p className="text-on-surface-variant mb-4 text-xs">Custom engineering for residential and commercial solar arrays. Optimized for maximum yield using high-precision hardware.</p>
-                  <ul className="space-y-2 mb-4">
-                    <li className="flex items-center gap-2 text-on-surface-variant">
-                      <span className="material-symbols-outlined text-primary text-[14px]">check_circle</span>
-                      <span className="text-[11px]">Photovoltaic (PV) system design</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-on-surface-variant">
-                      <span className="material-symbols-outlined text-primary text-[14px]">check_circle</span>
-                      <span className="text-[11px]">Hybrid battery storage solutions</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="md:w-1/3 min-h-[200px]">
-                  <img 
-                    alt="Solar Panels" 
-                    className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" 
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3kRV9UeiI1JNbfCL_odcJaACTtzRXpwHxLLUGPXl2DjF1-tEgu8KrIH8CTYFxnmmd5MyDxjsiCJ2r1pOarPNDVKzmNJWEpHpuf-lTomG14n4YYl5y9hX__68ViTWc4RJ_wEXSiI0VDbRCQg7Eb1Zb5LvRFlQrMRLdjw7akKDKaikie2HD6m5ynTIpSvefpSDXvcDsjaWO1HGRLHGs6xMTVAs1iej37y8NY-Fo7ku14hjm2pv8-kt4_MrCQ3PUUYbU0aDI1NPk6TdF"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              </div>
-            </div>
 
-            {/* CCTV Card */}
-            <div className="md:col-span-4 bg-white border border-slate-200 rounded-lg p-6 transition-all hover:shadow-md group">
-              <span className="material-symbols-outlined text-primary text-2xl mb-2">videocam</span>
-              <h3 className="text-lg font-bold mb-2">CCTV & Security</h3>
-              <p className="text-on-surface-variant text-xs mb-4">Advanced surveillance systems with AI-driven threat detection and remote monitoring.</p>
-              <div className="mt-auto pt-3 border-t border-slate-100">
-                <button className="text-[10px] font-bold text-primary group-hover:gap-2 flex items-center gap-1.5 transition-all">
-                  VIEW SECURITY PACKAGES <span className="material-symbols-outlined text-[10px]">arrow_forward</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Sidebar Navigation */}
+            <div className="lg:col-span-3 space-y-3">
+              {solutions.map((sol) => (
+                <button
+                  key={sol.id}
+                  onClick={() => setActiveTab(sol.id)}
+                  className={`w-full p-6 rounded-2xl flex items-center gap-4 transition-all duration-300 group ${
+                    activeTab === sol.id 
+                      ? 'bg-[#0A62D0] text-white shadow-xl shadow-blue-900/20 translate-x-2' 
+                      : 'bg-white text-slate-500 hover:bg-slate-100 border border-slate-100'
+                  }`}
+                >
+                  <span className={`material-symbols-outlined text-2xl ${activeTab === sol.id ? 'text-white' : 'text-slate-400 group-hover:text-[#0A62D0]'}`}>
+                    {sol.icon}
+                  </span>
+                  <span className="text-xs font-black uppercase tracking-widest">{sol.label}</span>
                 </button>
-              </div>
+              ))}
             </div>
 
-            {/* Maintenance Card */}
-            <div className="md:col-span-5 bg-white border border-slate-200 rounded-lg p-6 transition-all hover:shadow-md group flex flex-col">
-              <div className="mb-4 h-32 rounded-md overflow-hidden">
-                <img 
-                  alt="Maintenance" 
-                  className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHI70C_a7ZDtYV_tHmrMrQHho0JyMVfkiPhU8lOo8vvVAWV50q-pxIGv6lRtJZbPyxQIKCWwYV_F7NKiShKSAhcSrj63XM43cCWWyYzTVkxMd-8R1EbMxtjtwfNi0ZJD3isKhXyORdbWiUmPZZ4MGtlsF2oG1TYcObHgbbXlPBki0zrE86DUpcpXtpKNxeIIfqwkqzHhHn30x0LS5Mj5qj9tKhPksurxROWmq93Vd2UrT6hGCYCvAzoSWCCS2ONvXghE9RTvW0-1Rj"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <span className="material-symbols-outlined text-primary text-2xl mb-2">settings_suggest</span>
-              <h3 className="text-lg font-bold mb-2">Ongoing Maintenance</h3>
-              <p className="text-on-surface-variant text-xs">Preventative care and 24/7 technical support for peak infrastructure efficiency.</p>
-            </div>
-
-            {/* Repair Services Card */}
-            <div className="md:col-span-7 bg-white border border-slate-200 rounded-lg p-6 transition-all hover:shadow-md group relative">
-              <div className="flex items-start justify-between">
-                <div className="max-w-sm">
-                  <span className="material-symbols-outlined text-error text-2xl mb-2">build</span>
-                  <h3 className="text-lg font-bold mb-2">Rapid Repair Services</h3>
-                  <p className="text-on-surface-variant text-xs mb-4">Emergency response for hardware failures or connectivity issues. Our engineers are on-call 24/7.</p>
-                  <div className="flex gap-2">
-                    <div className="px-3 py-1.5 bg-error/10 text-error rounded text-[10px] font-bold flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-error rounded-full animate-pulse"></span>
-                      ON-CALL 24/7
+            {/* Content Display */}
+            <div className="lg:col-span-9">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="bg-white rounded-[32px] overflow-hidden shadow-2xl shadow-blue-900/5 border border-slate-100 flex flex-col md:flex-row h-full min-h-[500px]"
+                >
+                  <div className="md:w-1/2 p-10 md:p-16 flex flex-col">
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="w-10 h-1 bg-[#0A62D0] rounded-full"></span>
+                      <p className="text-[10px] font-black text-[#0A62D0] uppercase tracking-[0.3em]">{currentSolution.subtitle}</p>
                     </div>
-                    <div className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded text-[10px] font-bold">
-                      4-HOUR RESPONSE
+                    <h3 className="text-4xl font-black text-slate-900 mb-6 leading-tight">{currentSolution.title}</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed mb-10 font-medium">
+                      {currentSolution.description}
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-6 mt-auto">
+                      {currentSolution.features.map((feat, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center">
+                            <span className="material-symbols-outlined text-[#0A62D0] text-xs">check</span>
+                          </div>
+                          <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider">{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <button 
+                      onClick={() => setView("contact")}
+                      className="mt-12 group flex items-center gap-3 text-xs font-black text-[#0A62D0] uppercase tracking-widest hover:gap-5 transition-all"
+                    >
+                      Learn Technical Specs
+                      <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">trending_flat</span>
+                    </button>
+                  </div>
+
+                  <div className="md:w-1/2 relative overflow-hidden bg-slate-900">
+                    <img 
+                      src={currentSolution.image} 
+                      className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity hover:scale-110 transition-transform duration-[2000ms]"
+                      alt={currentSolution.title} 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-10 left-10 right-10">
+                      <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl">
+                        <p className="text-[10px] font-black text-blue-200 uppercase tracking-widest mb-2">Service Status</p>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                          <p className="text-xs font-bold text-white">Engineers Available for Commissioning</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
