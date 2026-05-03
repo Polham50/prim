@@ -91,7 +91,12 @@ function LandingPage({ setView, onOpenQuote }: { setView: (view: string) => void
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-3">{feature.title}</h3>
               <p className="text-sm text-slate-500 mb-6 flex-grow leading-relaxed">{feature.desc}</p>
-              <a href="#" className="text-[10px] font-bold text-slate-400 hover:text-[#0A62D0] tracking-widest uppercase transition-colors">READ MORE</a>
+              <button 
+                onClick={() => setView("services")}
+                className="text-[10px] font-bold text-slate-400 hover:text-[#0A62D0] tracking-widest uppercase transition-colors"
+              >
+                READ MORE
+              </button>
             </motion.div>
           ))}
         </div>
@@ -249,13 +254,12 @@ function LandingPage({ setView, onOpenQuote }: { setView: (view: string) => void
                 <div className="pt-16 pb-12 px-8 text-center flex flex-col items-center grow bg-white relative z-0">
                   <h3 className="text-xl font-extrabold text-slate-800 mb-4 group-hover:text-[#0A62D0] transition-colors">{srv.title}</h3>
                   <p className="text-sm text-slate-500 mb-8 leading-relaxed font-medium">{srv.desc}</p>
-                  <motion.a 
-                    href="#" 
+                  <button 
+                    onClick={() => setView("services")}
                     className="mt-auto flex items-center gap-2 text-xs font-bold text-[#4D8BF8] hover:text-[#0A62D0] tracking-widest uppercase transition-colors"
-                    whileHover={{ x: 5 }}
                   >
                     Explore Service <span className="material-symbols-outlined text-sm">trending_flat</span>
-                  </motion.a>
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -967,7 +971,12 @@ function ServicesPage() {
               <a className="px-5 py-2.5 bg-[#0A62D0] text-white font-bold rounded-lg text-[11px] shadow-md hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2 uppercase tracking-wider" href="#quote">
                 Request a Quote
               </a>
-              <a className="px-5 py-2.5 border border-slate-200 text-slate-500 font-bold rounded-lg text-[11px] hover:bg-slate-50 transition-all uppercase tracking-wider" href="#services">Explore Services</a>
+              <button 
+                className="px-5 py-2.5 border border-slate-200 text-slate-500 font-bold rounded-lg text-[11px] hover:bg-slate-50 transition-all uppercase tracking-wider" 
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Explore Services
+              </button>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-5">
