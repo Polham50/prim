@@ -362,7 +362,7 @@ function ProductModal({ product, onClose, onAddToCart, setView }: { product: Pro
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="bg-white w-full max-w-4xl rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] flex flex-col md:flex-row relative my-auto max-h-[85vh]"
+        className="bg-white w-full max-w-4xl rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] flex flex-col md:flex-row relative my-auto max-h-[90vh] overflow-y-auto md:overflow-hidden"
       >
         <button 
           onClick={onClose}
@@ -563,7 +563,7 @@ function ProductPage({ onAddToCart, setView, comparisonProducts, onToggleCompari
             initial={{ y: 100, x: '-50%' }}
             animate={{ y: 0, x: '-50%' }}
             exit={{ y: 100, x: '-50%' }}
-            className="fixed bottom-8 left-1/2 z-[60] bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-8 border border-white/10 backdrop-blur-xl"
+            className="fixed bottom-8 left-1/2 z-[60] w-[calc(100%-2rem)] md:w-auto bg-slate-900 text-white px-4 md:px-6 py-4 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-4 md:gap-8 border border-white/10 backdrop-blur-xl"
           >
             <div className="flex items-center gap-4">
               <div className="flex -space-x-3">
@@ -703,7 +703,7 @@ function ProductPage({ onAddToCart, setView, comparisonProducts, onToggleCompari
                 <div className="p-4 flex-grow flex flex-col">
                   <div className="mb-2">
                     <span className="text-[9px] font-bold text-outline uppercase tracking-wider">{p.brand}</span>
-                    <h3 className="text-xs font-bold text-on-surface line-clamp-1 group-hover:text-primary transition-colors">{p.name}</h3>
+                    <h3 className="text-sm font-bold text-on-surface line-clamp-1 group-hover:text-primary transition-colors">{p.name}</h3>
                   </div>
                   <p className="text-[10px] text-on-surface-variant mb-4 line-clamp-2 leading-relaxed">{p.desc}</p>
                   <div className="mt-auto flex items-center justify-between">
@@ -786,7 +786,7 @@ function AboutPage() {
             <div className="aspect-square rounded-3xl bg-slate-100 overflow-hidden shadow-2xl">
               <img src="/images/hero_solar.png" className="w-full h-full object-cover" alt="Solar Tech" />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white p-8 rounded-2xl shadow-xl border border-slate-100 max-w-[200px]">
+            <div className="absolute -bottom-6 -left-2 sm:-left-6 bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-100 max-w-[160px] sm:max-w-[200px]">
               <p className="text-3xl font-black text-[#0A62D0]">100+</p>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Global Projects Delivered</p>
             </div>
@@ -1085,7 +1085,7 @@ function ServicesPage() {
                     </button>
                   </div>
 
-                  <div className="md:w-1/2 relative overflow-hidden bg-slate-900">
+                  <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden bg-slate-900">
                     <img 
                       src={currentSolution.image} 
                       className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity hover:scale-110 transition-transform duration-[2000ms]"
@@ -1648,7 +1648,7 @@ function EnergySavingsPage({ setView }: { setView: (v: any) => void }) {
               </div>
 
               {/* Quick-add grid */}
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 mb-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
                 {commonAppliances.map(app => (
                   <button 
                     key={app.name} 
@@ -2122,7 +2122,7 @@ function ComparisonModal({ products, onClose }: { products: Product[], onClose: 
         </div>
 
         <div className="flex-grow overflow-auto p-8">
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse min-w-[600px] md:min-w-0">
             <thead>
               <tr>
                 <th className="p-4 text-left bg-slate-50 rounded-tl-xl border-b border-slate-200 w-1/4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Specifications</th>
@@ -2538,7 +2538,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] flex flex-col md:flex-row relative w-full max-w-4xl"
+        className="bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] flex flex-col md:flex-row relative w-full max-w-4xl max-h-[90vh] overflow-y-auto custom-scrollbar"
       >
         <button 
           onClick={onClose}
