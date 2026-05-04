@@ -2681,7 +2681,7 @@ function ChatBot({ messages, setMessages, onClose }: {
       initial={{ opacity: 0, y: 100, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 100, scale: 0.9 }}
-      className="fixed bottom-24 right-8 z-[70] w-[380px] h-[550px] bg-white rounded-3xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18)] border border-slate-100 flex flex-col overflow-hidden"
+      className="fixed inset-0 md:inset-auto md:bottom-24 md:right-8 z-[70] w-full h-full md:w-[380px] md:h-[550px] bg-white md:rounded-3xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18)] border border-slate-100 flex flex-col overflow-hidden"
     >
       <div className="bg-[#0A62D0] p-6 text-white flex justify-between items-center">
         <div className="flex items-center gap-3">
